@@ -1,0 +1,13 @@
+# Normalise line endings so a Windows checkout doesn't produce a diff on every
+# file the moment someone opens the repo on macOS/Linux (or on Vercel's build).
+* text=auto eol=lf
+
+# Binary assets — never touch these
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

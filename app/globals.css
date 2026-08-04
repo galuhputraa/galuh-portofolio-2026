@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Slate surfaces and typography carried over from the original portfolio HTML.
+   Light is the default theme.
+
+   ACCENT: Bank Mandiri blue #003D79, sampled directly from the official logo
+   in public/logos/mandiri.png (the dominant wordmark colour). It replaces the
+   original's teal #0F6F6A.
+     light  #003D79  11.6:1 on --bg, carries white text at 11.4:1
+     dark   #4C9AE8  6.5:1 on --bg  — #003D79 scores 1.6:1 there and would be
+                                      invisible, so dark mode uses a brightened
+                                      tint of the same hue
+
+   Three neutral values also deviate from the original HTML, all for WCAG AA:
+     --fg-muted (light)  #64748B -> #4E5C73   was 4.2:1 on --bg; now 5.9:1
+     --fg-faint (light)  #94A3B8 -> #5F6D82   was 2.2:1; now 4.6:1
+     --fg-faint (dark)   #6B7789 -> #7D8899   was 4.2:1; now 5.3:1
+   Faint carries dates and role periods, which are content, not decoration —
+   so it has to clear 4.5:1 rather than sit at a decorative contrast.
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #eef1f6;
+  --bg-elevated: #f5f7fa;
+  --surface: #ffffff;
+  --surface-hover: #f5f7fa;
+  --border: rgb(15 23 42 / 0.07);
+  --border-strong: rgb(15 23 42 / 0.16);
+  --fg: #1e2a44;
+  --fg-muted: #4e5c73;
+  --fg-faint: #5f6d82;
+  --accent: #003d79;
+  --on-accent: #ffffff;
+  --accent-text: #003d79;
+  --accent-glow: rgb(0 61 121 / 0.13);
+  --pill: #2b374d;
+  --pill-fg: #ffffff;
+  --dot: rgb(15 23 42 / 0.07);
+  --chip: #ffffff;
+  /* Backdrop for full-size brand logos. Nothing in light mode — the card is
+     already light. See the dark override for why it exists at all. */
+  --logo-plate: transparent;
+}
+
+[data-theme="dark"] {
+  --bg: #080b12;
+  --bg-elevated: #0f1420;
+  --surface: #0f1420;
+  --surface-hover: #161d2c;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --fg: #e8ecf4;
+  --fg-muted: #98a3b8;
+  --fg-faint: #7d8899;
+  --accent: #4c9ae8;
+  --on-accent: #04203f;
+  --accent-text: #4c9ae8;
+  --accent-glow: rgb(76 154 232 / 0.16);
+  --pill: #e8ecf4;
+  --pill-fg: #0f1420;
+  --dot: rgb(255 255 255 / 0.06);
+  --chip: #ffffff;
+  /* The Mandiri wordmark is navy #003D79 — 1.4:1 on this surface, i.e. gone.
+     Recolouring someone's logo is not an option, so dark mode gives it a light
+     plate to sit on. Light mode keeps this transparent, so no visible box. */
+  --logo-plate: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border-subtle: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-chip: var(--chip);
+  --color-pill: var(--pill);
+  --color-pill-fg: var(--pill-fg);
+
+  /* Same three families as the original site. */
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-script: var(--font-great-vibes), cursive;
+
+  --radius-card: 20px;
+  --radius-nested: 12px;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* clears the sticky nav pill when jumping to an anchor */
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Stat numbers and dates must not jitter while counting up. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Brand logos keep their official colors, so they sit on a white chip in both
+   themes rather than being inverted or recolored. */
+.logo-chip {
+  background: var(--chip);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
