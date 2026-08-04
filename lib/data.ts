@@ -47,11 +47,8 @@ export const stats = [
 export type Experience = {
   id: string;
   period: string;
-  start: string;
-  end: string;
   role: string;
   company: string;
-  companyShort: string;
   location: string;
   logo: string;
   logoAlt: string;
@@ -64,11 +61,8 @@ export const experience: Experience[] = [
   {
     id: "mandiri",
     period: "Mar 2026 — Present",
-    start: "2026",
-    end: "Present",
     role: "Officer Development Program — Information Technology",
     company: "PT Bank Mandiri (Persero) Tbk.",
-    companyShort: "Bank Mandiri",
     location: "Jakarta, Indonesia",
     logo: "/logos/mandiri.png",
     logoAlt: "Bank Mandiri",
@@ -76,11 +70,8 @@ export const experience: Experience[] = [
   {
     id: "ilmuone-ds",
     period: "Mar 2025 — Mar 2026",
-    start: "2025",
-    end: "2026",
     role: "Data Scientist",
     company: "ilmuOne Data",
-    companyShort: "ilmuOne Data",
     location: "Jakarta, Indonesia",
     logo: "/logos/ilmuone.png",
     logoAlt: "ilmuOne Data",
@@ -96,11 +87,8 @@ export const experience: Experience[] = [
   {
     id: "ilmuone-jr",
     period: "Jun 2023 — Mar 2025",
-    start: "2023",
-    end: "2025",
     role: "Jr. Data Scientist",
     company: "ilmuOne Data",
-    companyShort: "ilmuOne Data",
     location: "Jakarta, Indonesia",
     logo: "/logos/ilmuone.png",
     logoAlt: "ilmuOne Data",
@@ -115,11 +103,8 @@ export const experience: Experience[] = [
   {
     id: "bangkit",
     period: "Feb 2021 — Jul 2021",
-    start: "2021",
-    end: "2021",
     role: "Machine Learning Engineer",
     company: "Bangkit Academy — led by Google, Tokopedia, Gojek & Traveloka",
-    companyShort: "Bangkit Academy",
     location: "Jakarta, Indonesia",
     logo: "/logos/bangkit.png",
     logoAlt: "Bangkit Academy",
