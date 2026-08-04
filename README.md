@@ -102,12 +102,11 @@ entry without them stays clean.
 
 ## Deploying
 
-Set `NEXT_PUBLIC_SITE_URL` to the live origin so OpenGraph and Twitter image URLs
-resolve absolutely instead of falling back to `http://localhost:3000`.
+See **[DEPLOY.md](DEPLOY.md)** for the full GitHub → Vercel walkthrough.
 
-```bash
-NEXT_PUBLIC_SITE_URL=https://your-domain.com npm run build
-```
+Short version: Vercel auto-detects Next.js and needs no build configuration. The
+one thing you must set is `NEXT_PUBLIC_SITE_URL` (see `.env.example`), otherwise
+OpenGraph and Twitter image URLs resolve against `localhost` and link previews
+break. `lib/site.ts` falls back to Vercel's per-deployment URL on previews.
 
-The whole site prerenders as static content, so any static host works; Vercel needs
-no extra configuration.
+Every route prerenders as static content, so any static host works too.
