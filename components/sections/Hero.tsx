@@ -50,7 +50,7 @@ export function Hero() {
                   height={96}
                   priority
                   sizes="(max-width: 640px) 72px, 96px"
-                  className="h-[72px] w-[72px] rounded-full object-cover object-[50%_22%] ring-1 ring-[var(--border-strong)] sm:h-24 sm:w-24"
+                  className="h-[72px] w-[72px] rounded-full object-cover ring-1 ring-[var(--border-strong)] sm:h-24 sm:w-24"
                 />
                 <span
                   aria-hidden
