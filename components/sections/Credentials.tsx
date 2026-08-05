@@ -7,9 +7,13 @@ import { RevealGroup } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { certThumb, certifications, profile } from "@/lib/data";
 import { fadeUp, reducedVariants, spring } from "@/lib/motion";
+import { useFinePointer } from "@/lib/use-media-query";
 
 export function Credentials() {
   const reduce = useReducedMotion();
+  // Touch screens fire hover but never unhover, so a tapped card would stay
+  // lifted until something else was tapped.
+  const canHover = useFinePointer() && !reduce;
 
   return (
     <section
@@ -34,7 +38,7 @@ export function Credentials() {
             rel="noopener noreferrer"
             aria-label={`${cert.title}, ${cert.issuer}, ${cert.year} — open certificate PDF in a new tab`}
             variants={reduce ? reducedVariants : fadeUp}
-            whileHover={reduce ? undefined : { y: -4 }}
+            whileHover={canHover ? { y: -4 } : undefined}
             transition={spring.snappy}
             className={`group flex flex-col overflow-hidden rounded-[var(--radius-card)] border bg-[var(--surface)] transition-colors duration-200 ${
               cert.featured
@@ -88,7 +92,7 @@ export function Credentials() {
           rel="noopener noreferrer"
           aria-label="Download full CV as PDF (opens in a new tab)"
           variants={reduce ? reducedVariants : fadeUp}
-          whileHover={reduce ? undefined : { y: -4 }}
+          whileHover={canHover ? { y: -4 } : undefined}
           transition={spring.snappy}
           className="group flex min-h-[180px] flex-col justify-between gap-4 rounded-[var(--radius-card)] bg-[var(--accent)] p-6 text-[var(--on-accent)] transition-opacity duration-200 hover:opacity-90"
         >

@@ -46,10 +46,15 @@ export function SplitText({
           className="inline-block whitespace-nowrap"
         >
           {[...word].map((char, charIndex) => (
+            // No will-change here on purpose. framer-motion adds it for the
+            // duration of the animation and removes it afterwards; a static
+            // class would pin every character onto its own compositor layer
+            // permanently, which costs memory for no benefit once the reveal
+            // has finished.
             <m.span
               key={`${char}-${charIndex}`}
               variants={charReveal}
-              className="inline-block will-change-transform"
+              className="inline-block"
             >
               {char}
             </m.span>

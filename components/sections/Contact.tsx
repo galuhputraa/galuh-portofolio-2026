@@ -7,6 +7,7 @@ import { Reveal, RevealGroup } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { links } from "@/lib/data";
 import { fadeUp, reducedVariants, spring } from "@/lib/motion";
+import { useFinePointer } from "@/lib/use-media-query";
 
 const channels = [
   {
@@ -37,6 +38,9 @@ const channels = [
 
 export function Contact() {
   const reduce = useReducedMotion();
+  // Touch screens fire hover but never unhover, so a tapped card would stay
+  // lifted until something else was tapped.
+  const canHover = useFinePointer() && !reduce;
 
   return (
     <section
@@ -64,7 +68,7 @@ export function Contact() {
               external ? `${label}: ${value} (opens in a new tab)` : `${label}: ${value}`
             }
             variants={reduce ? reducedVariants : fadeUp}
-            whileHover={reduce ? undefined : { y: -4 }}
+            whileHover={canHover ? { y: -4 } : undefined}
             transition={spring.snappy}
             className="group flex min-h-[148px] flex-col justify-between gap-6 rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--surface)] p-6 transition-colors duration-200 hover:border-[var(--accent)] sm:p-7"
           >

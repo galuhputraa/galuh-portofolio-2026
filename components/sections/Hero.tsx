@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  m,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
 import { useRef } from "react";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
@@ -18,7 +24,14 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const photoY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  // Spring first, then map. Binding parallax straight to scroll position makes
+  // it track the wheel's discrete steps; the spring gives the photo weight.
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 26,
+    restDelta: 0.0005,
+  });
+  const photoY = useTransform(smooth, [0, 1], [0, 40]);
 
   return (
     <section
