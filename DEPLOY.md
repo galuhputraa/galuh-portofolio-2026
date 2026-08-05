@@ -1,51 +1,34 @@
 # Deploy
 
-The repo is already initialised and committed on `main`. Nothing has been
-pushed anywhere yet — that's the part below.
-
 Run everything from `C:\Galuh\Personal\portfolio-web`.
 
 ---
 
-## 1 — Create the GitHub repo and push
+## 1 — GitHub ✅ done
 
-### Option A: GitHub CLI (fewer steps)
+Remote: <https://github.com/galuhputraa/galuh-portofolio-2026> — `main` is
+pushed and tracking `origin/main`.
 
-```bash
-gh auth login          # skip if already authenticated
-gh repo create galuh-portfolio --private --source=. --remote=origin --push
-```
-
-`gh repo create` sets the remote and pushes in one go. Use `--public` instead of
-`--private` if you want the source visible.
-
-### Option B: web UI
-
-1. Go to <https://github.com/new>.
-2. Name it `galuh-portfolio`. **Leave every "Initialize this repository with"
-   checkbox unticked** — the repo already has a commit, and a README or license
-   created on GitHub's side will collide with it.
-3. Create, then:
+Check the state any time with:
 
 ```bash
-git remote add origin https://github.com/<your-username>/galuh-portfolio.git
-git push -u origin main
-```
-
-### Verify
-
-```bash
-git remote -v
-git log --oneline -1
+git status -sb
+git log --oneline origin/main..HEAD   # any output = unpushed commits
 ```
 
 ---
 
 ## 2 — Deploy on Vercel
 
-1. <https://vercel.com/new> → **Import Git Repository** → pick `galuh-portfolio`.
-   Authorise Vercel for the repo if prompted.
-2. Leave every build setting at its default. Vercel detects Next.js on its own:
+1. <https://vercel.com/new> → **Import Git Repository** → pick
+   `galuh-portofolio-2026`. Sign in with GitHub, and if the repo is private
+   you'll be asked to install the Vercel GitHub App — grant it access to that
+   repo (or all repos, your call).
+2. **Project Name** decides the free URL: `<project-name>.vercel.app`. It
+   defaults to the repo name, so you'd get `galuh-portofolio-2026.vercel.app`.
+   Change it here if you want something cleaner — renaming later is possible but
+   changes the URL, so pick now.
+3. Leave every build setting at its default. Vercel detects Next.js on its own:
 
    | Setting | Value |
    |---|---|
@@ -56,10 +39,10 @@ git log --oneline -1
    | Output Directory | (leave empty) |
 
    Do **not** set a Root Directory — the repo root *is* the app.
-3. Click **Deploy**. First build takes roughly 2–4 minutes.
+4. Click **Deploy**. First build takes roughly 2–4 minutes.
 
-You get a URL like `galuh-portfolio.vercel.app`. The site works at this point,
-but social previews are still wrong — fix that next.
+The site works at this point, but social previews are still wrong — fix that
+next.
 
 ---
 
@@ -73,7 +56,7 @@ Slack and X.
 
 | Key | Value | Environments |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://galuh-portfolio.vercel.app` | Production |
+| `NEXT_PUBLIC_SITE_URL` | `https://<your-project>.vercel.app` | Production |
 
 No trailing slash. Then **Deployments → ⋯ on the latest → Redeploy** — env vars
 are baked in at build time, so the running deployment won't pick it up on its
