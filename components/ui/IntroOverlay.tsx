@@ -16,19 +16,24 @@ export function IntroOverlay() {
   // Reduced motion skips the curtain entirely rather than dismissing it later.
   const visible = !reduce && !dismissed;
 
+  // One effect owns the scroll lock. Two of them racing over the same inline
+  // style meant an unlucky ordering could leave the page permanently locked.
   useEffect(() => {
-    if (reduce) return;
+    if (!visible) {
+      document.body.style.removeProperty("overflow");
+      return;
+    }
     document.body.style.overflow = "hidden";
-    const timer = window.setTimeout(() => setDismissed(true), 1100);
     return () => {
-      window.clearTimeout(timer);
-      document.body.style.overflow = "";
+      document.body.style.removeProperty("overflow");
     };
-  }, [reduce]);
+  }, [visible]);
 
   useEffect(() => {
-    if (!visible) document.body.style.overflow = "";
-  }, [visible]);
+    if (reduce) return;
+    const timer = window.setTimeout(() => setDismissed(true), 1100);
+    return () => window.clearTimeout(timer);
+  }, [reduce]);
 
   if (reduce) return null;
 

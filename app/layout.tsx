@@ -80,6 +80,16 @@ export default function RootLayout({
       className={`${jakarta.variable} ${plexMono.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        {/* Runs before hydration, and before the browser gets a chance to
+            restore the previous scroll offset on reload. Without this a
+            refresh mid-page lifts the intro curtain onto a random section.
+            See components/ui/ScrollReset.tsx for the full reasoning. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if('scrollRestoration' in history){history.scrollRestoration='manual'}",
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

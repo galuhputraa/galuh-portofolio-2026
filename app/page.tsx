@@ -9,6 +9,7 @@ import { Nav } from "@/components/sections/Nav";
 import { Work } from "@/components/sections/Work";
 import { GridBackground } from "@/components/ui/GridBackground";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { ScrollReset } from "@/components/ui/ScrollReset";
 
 // Decorative, pointer-only chrome — kept out of the initial chunk.
 const IntroOverlay = dynamic(() =>
@@ -28,6 +29,7 @@ export default function Home() {
         Skip to content
       </a>
 
+      <ScrollReset />
       <IntroOverlay />
       <GridBackground />
       <ScrollProgress />
