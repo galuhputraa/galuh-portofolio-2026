@@ -1,6 +1,7 @@
 "use client";
 
 import { BentoCard } from "@/components/ui/BentoCard";
+import { LogoChip } from "@/components/ui/LogoChip";
 import { RevealGroup } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/lib/data";
@@ -24,13 +25,16 @@ export function Work() {
         {projects.map((project) => (
           <BentoCard key={project.id} as="article" tilt maxTilt={6}>
             <div className="flex h-full flex-col gap-5 p-6 sm:p-8">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center justify-between gap-4">
                 <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--accent-text)]">
                   {project.category}
                 </p>
-                <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--fg-faint)]">
-                  {project.context}
-                </p>
+                <LogoChip
+                  src={project.contextLogo}
+                  alt={project.context}
+                  size={32}
+                  bleed={project.contextLogo.includes("ilmuone")}
+                />
               </div>
 
               <div>

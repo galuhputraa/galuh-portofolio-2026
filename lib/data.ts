@@ -141,7 +141,9 @@ export type Project = {
   description: string;
   metrics: { value: string; label: string }[];
   stack: string[];
+  /** Where the work was done. Rendered as a logo; the string is the alt text. */
   context: string;
+  contextLogo: string;
 };
 
 export const projects: Project[] = [
@@ -157,6 +159,7 @@ export const projects: Project[] = [
     ],
     stack: ["LLMs", "Python", "BigQuery", "GCP"],
     context: "ilmuOne Data",
+    contextLogo: "/logos/ilmuone.png",
   },
   {
     id: "roi-forecasting",
@@ -170,6 +173,7 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "scikit-learn", "SQL", "Looker Studio"],
     context: "ilmuOne Data",
+    contextLogo: "/logos/ilmuone.png",
   },
   {
     id: "data-automation",
@@ -183,6 +187,7 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "BigQuery", "Cloud Functions", "Mailchimp"],
     context: "ilmuOne Data",
+    contextLogo: "/logos/ilmuone.png",
   },
   {
     id: "danbam-tech",
@@ -196,6 +201,7 @@ export const projects: Project[] = [
     ],
     stack: ["TensorFlow", "Android", "Cloud Storage"],
     context: "Bangkit Academy",
+    contextLogo: "/logos/bangkit.png",
   },
 ];
 
