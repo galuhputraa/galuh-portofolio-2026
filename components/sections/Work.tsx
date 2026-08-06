@@ -14,8 +14,8 @@ export function Work() {
     >
       <SectionHeading
         index="03"
-        title="Selected work"
-        description="Machine learning and analytics shipped for enterprise clients across banking, automotive and marketplace."
+        title="Things I've built"
+        description="Four projects, the problem behind each one, and the numbers that came out."
       />
 
       <RevealGroup

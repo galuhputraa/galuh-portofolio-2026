@@ -56,15 +56,20 @@ export function Hero() {
                 style={reduce ? undefined : { y: photoY }}
                 className="relative shrink-0"
               >
-                <Image
-                  src={profile.photo}
-                  alt={`Portrait of ${profile.name}`}
-                  width={96}
-                  height={96}
-                  priority
-                  sizes="(max-width: 640px) 72px, 96px"
-                  className="h-[72px] w-[72px] rounded-full object-cover ring-1 ring-[var(--border-strong)] sm:h-24 sm:w-24"
-                />
+                {/* The portrait is square and so is the frame, so object-cover
+                    crops nothing and object-position has no effect. Scaling up
+                    a little is what buys the room to nudge the face left. */}
+                <span className="block h-[72px] w-[72px] overflow-hidden rounded-full ring-1 ring-[var(--border-strong)] sm:h-24 sm:w-24">
+                  <Image
+                    src={profile.photo}
+                    alt={`Portrait of ${profile.name}`}
+                    width={96}
+                    height={96}
+                    priority
+                    sizes="(max-width: 640px) 72px, 96px"
+                    className="h-full w-full -translate-x-[3%] scale-110 object-cover"
+                  />
+                </span>
                 <span
                   aria-hidden
                   className="absolute -inset-1 -z-10 rounded-full bg-[var(--accent-glow)] blur-lg"

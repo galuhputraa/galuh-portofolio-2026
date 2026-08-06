@@ -65,8 +65,11 @@ Renders page 1 of every PDF in `public/certificates/` to a trimmed WebP in
 (14–37 KB) and still link to the PDF, so nobody downloads 360 KB just to see
 what a certificate looks like. Re-run after adding or replacing a PDF.
 
-Requires the `pdfjs-dist`, `@napi-rs/canvas` and `sharp` devDependencies — build
-and runtime do not.
+Requires the `mupdf` and `sharp` devDependencies — build and runtime do not.
+
+Rendering uses MuPDF rather than pdf.js: pdf.js dropped the entire body text of
+the Coursera certificates (recipient name, course title, description), leaving a
+thumbnail that was just the sidebar on a blank page.
 
 ## Motion
 

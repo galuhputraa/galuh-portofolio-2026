@@ -15,7 +15,11 @@ export function About() {
       id="about"
       className="mx-auto w-full max-w-[1200px] scroll-mt-24 px-4 py-24 sm:px-6 md:py-32 lg:px-8"
     >
-      <SectionHeading index="01" title="About" />
+      <SectionHeading
+        index="01"
+        title="About"
+        description="The short version: what I do, where I trained, and what I build with."
+      />
 
       <RevealGroup
         className="grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12"

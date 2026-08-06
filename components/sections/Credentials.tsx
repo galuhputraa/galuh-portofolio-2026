@@ -22,8 +22,8 @@ export function Credentials() {
     >
       <SectionHeading
         index="04"
-        title="Credentials"
-        description="Every card opens the original certificate PDF."
+        title="Certifications"
+        description="The training behind the work. Open any card for the original certificate, or take the full CV."
       />
 
       <RevealGroup

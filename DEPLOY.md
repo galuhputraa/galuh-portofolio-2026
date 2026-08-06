@@ -124,10 +124,11 @@ git add -A && git commit -m "Add certificate" && git push
 
 ## Notes
 
-- `npm audit` reports 3 high-severity advisories, all in the `pdfjs-dist`
-  dependency chain used by the thumbnail script. That script only ever runs
-  locally against your own PDFs and is not part of the build or runtime, so
-  nothing reaches production. Worth revisiting when `pdfjs-dist` publishes a fix.
+- The thumbnail script no longer pulls in `pdfjs-dist`, so the advisories in
+  that dependency chain are gone. `npm audit` still reports 3 high-severity
+  advisories, but they are a separate set — `postcss` and `sharp` nested inside
+  `next` itself, both build-time only. Clearing them means `next@16.3.0`, which
+  is outside the stated dependency range, so they are left alone for now.
 - `.env.example` is committed on purpose — it documents the one variable and
   holds no values. Real `.env*` files stay ignored.
 - The repo is scoped to `portfolio-web/` only. The CV source PDFs, certificate

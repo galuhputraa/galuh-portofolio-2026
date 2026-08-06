@@ -50,7 +50,7 @@ export function Contact() {
       <SectionHeading
         index="05"
         title="Let's talk"
-        description="Open to conversations about applied AI, computer vision and data products."
+        description="If you're hiring for applied AI, computer vision or data, I'd be glad to hear from you."
       />
 
       <RevealGroup

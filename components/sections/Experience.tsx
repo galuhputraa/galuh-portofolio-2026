@@ -29,7 +29,7 @@ export function Experience() {
       <SectionHeading
         index="02"
         title="Experience"
-        description="Three and a half years across enterprise consulting and banking technology."
+        description="Three and a half years so far — enterprise consulting first, now banking technology."
       />
 
       <div className="relative">
